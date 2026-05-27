@@ -9,15 +9,16 @@ const RightSection: React.FC = () => {
 
   return (
     <Button
+      aria-label="Translate Text"
       type="submit"
       disabled={!isValid}
       radius="xl"
       bg={isSubmitting ? "gray" : "none"}
     >
       {isSubmitting ? (
-        <FaSquare size={15} color="white" />
+        <FaSquare aria-hidden="true" size={15} color="white" />
       ) : (
-        <FiArrowUp size={15} color="white" />
+        <FiArrowUp aria-hidden="true" size={15} color="white" />
       )}
     </Button>
   )

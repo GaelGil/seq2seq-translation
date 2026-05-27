@@ -2,9 +2,9 @@ import {
   AppShell,
   Box,
   Container,
-  Flex,
   Paper,
   Select,
+  SimpleGrid,
   Stack,
   Text,
 } from "@mantine/core";
@@ -21,6 +21,14 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
+const panelStyle = {
+  backgroundColor: "var(--mantine-color-dark-8)",
+  border: "1px solid var(--mantine-color-dark-5)",
+  height: "100%",
+  display: "flex",
+  flexDirection: "column" as const,
+};
+
 function HomePage() {
   const [collapsed, { toggle: toggleCollapsed }] = useDisclosure(false);
 
@@ -36,85 +44,71 @@ function HomePage() {
         navbar={{
           width: sidebarWidth,
           breakpoint: "sm",
-          collapsed: { mobile: false, desktop: false },
+          collapsed: { mobile: true, desktop: false },
         }}
         padding="md"
-        bg={"black"}
+        bg="dark.9"
       >
-        <AppShell.Navbar p="md" withBorder={false} bg={"black"}>
+        <AppShell.Navbar p="md" withBorder={false} bg="dark.9">
           <HomeSideBar collapsed={collapsed} toggle={toggleCollapsed} />
         </AppShell.Navbar>
         <AppShell.Main>
           <Container
+            id="main-content"
             fluid
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              minHeight: "100vh",
-              paddingBottom: "10vh",
+              minHeight: "calc(100svh - var(--app-shell-padding))",
+              paddingBottom: "max(10vh, env(safe-area-inset-bottom))",
+              overflowX: "hidden",
             }}
           >
-            <Stack w="100%" maw={"900"}>
+            <Stack w="100%" maw={1080} gap="lg">
               <Box ta="center">
                 <HeaderMessage />
               </Box>
-              {/*<Paper radius="lg" p="xl" w="100%" maw={"900"}>*/}
-              <Flex gap="md" align="stretch" wrap="nowrap">
-                <Box style={{ flex: 1 }} c="white">
-                  <Paper
-                    p="md"
-                    radius="lg"
-                    style={{
-                      backgroundColor: "#1a1a1a",
-                      border: "1px solid #333",
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Text size="sm" fw={500} mb="xs">
+              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="md">
+                <Box c="white" style={{ minWidth: 0 }}>
+                  <Paper p="md" radius="lg" style={panelStyle}>
+                    <Text
+                      component="label"
+                      htmlFor="translation-source"
+                      size="sm"
+                      fw={500}
+                      mb="xs"
+                    >
                       Spanish
                     </Text>
                     <InputBar />
                   </Paper>
                 </Box>
 
-                <Box style={{ flex: 1 }}>
-                  <Paper
-                    p="md"
-                    radius="lg"
-                    style={{
-                      backgroundColor: "#1a1a1a",
-                      border: "1px solid #333",
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
+                <Box style={{ minWidth: 0 }}>
+                  <Paper p="md" radius="lg" style={panelStyle}>
                     <Select
-                      placeholder="Select language"
-                      data={["English", "Na"]}
+                      label="Output Language"
+                      placeholder="Choose Output Language…"
+                      data={["English"]}
+                      defaultValue="English"
                       mb="md"
                       variant="filled"
                       styles={{ input: { color: "white" } }}
-
-                      // bg="red"
-                      // c="white"
                     />
                     <Translation />
                   </Paper>
                 </Box>
-              </Flex>
-              <Flex gap="md" align="stretch" wrap="nowrap">
-                <Box style={{ flex: 1 }}>
+              </SimpleGrid>
+              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="md">
+                <Box style={{ minWidth: 0 }}>
                   <Samples />
                 </Box>
-                <Box style={{ flex: 1 }}>
+                <Box style={{ minWidth: 0 }}>
                   <UserSubmisions />
                 </Box>
-              </Flex>
+              </SimpleGrid>
             </Stack>
           </Container>
         </AppShell.Main>

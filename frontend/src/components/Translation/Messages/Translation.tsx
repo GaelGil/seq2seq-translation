@@ -30,7 +30,8 @@ const Translation: React.FC = () => {
       }}
     >
       <Textarea
-        placeholder={isStreaming ? "Translating..." : PLACEHOLDER}
+        aria-label="Translated Text"
+        placeholder={isStreaming ? "Translating…" : PLACEHOLDER}
         variant="unstyled"
         autosize
         minRows={6}
@@ -55,12 +56,17 @@ const Translation: React.FC = () => {
         >
           <Tooltip label={copied ? "Copied!" : "Copy"}>
             <ActionIcon
+              aria-label={copied ? "Translation Copied" : "Copy Translation"}
               variant="subtle"
               color={copied ? "green" : "gray"}
               onClick={handleCopy}
               size="sm"
             >
-              {copied ? <FiCheck size={16} /> : <FiCopy size={16} />}
+              {copied ? (
+                <FiCheck aria-hidden="true" size={16} />
+              ) : (
+                <FiCopy aria-hidden="true" size={16} />
+              )}
             </ActionIcon>
           </Tooltip>
         </Box>

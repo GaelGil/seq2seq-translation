@@ -35,7 +35,7 @@ const UserSubmisions = () => {
       <Accordion.Item value="how-to-prompt">
         <Accordion.Control bg="transparent">
           <Flex align="center" gap="xs" c="white">
-            <FiHelpCircle size={16} color="white" />
+            <FiHelpCircle aria-hidden="true" size={16} color="white" />
             <Text size="sm" fw={500}>
               User Submissions
             </Text>
@@ -45,7 +45,7 @@ const UserSubmisions = () => {
           <Box p="xs">
             <ScrollArea.Autosize>
               {isLoading ? (
-                <Text>Loading</Text>
+                <Text aria-live="polite">Loading…</Text>
               ) : isError ? (
                 <Text c="red">Error loading translations</Text>
               ) : translations?.length === 0 ? (

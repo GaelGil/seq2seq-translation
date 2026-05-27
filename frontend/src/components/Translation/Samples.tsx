@@ -1,6 +1,14 @@
 "use client";
 
-import { Accordion, Box, Flex, ScrollArea, Stack, Text } from "@mantine/core";
+import {
+  Accordion,
+  Box,
+  Button,
+  Flex,
+  ScrollArea,
+  Stack,
+  Text,
+} from "@mantine/core";
 import { FiHelpCircle } from "react-icons/fi";
 
 import { useTranslationContext } from "@/contexts/TranslationContext";
@@ -47,7 +55,7 @@ const Samples = () => {
       <Accordion.Item value="how-to-prompt">
         <Accordion.Control bg="transparent">
           <Flex align="center" gap="xs" c="white">
-            <FiHelpCircle size={16} />
+            <FiHelpCircle aria-hidden="true" size={16} />
             <Text size="sm" fw={500}>
               Sample Spanish Sentences
             </Text>
@@ -58,15 +66,19 @@ const Samples = () => {
             <ScrollArea.Autosize h={200}>
               <Stack gap="xs">
                 {SENTENCES.map((example, index) => (
-                  <Box
+                  <Button
                     key={index}
+                    aria-label={`Use Sample Sentence ${index + 1}`}
+                    justify="flex-start"
                     p="xs"
+                    variant="subtle"
                     style={{
                       borderRadius: 6,
                       border: "1px solid var(--mantine-color-dark-5)",
                       backgroundColor: "var(--mantine-color-dark-6)",
-                      cursor: "pointer",
-                      transition: "all 0.2s ease",
+                      height: "auto",
+                      transition:
+                        "border-color 0.2s ease, background-color 0.2s ease",
                     }}
                     onClick={() => setSrc(example.text)}
                     onMouseEnter={(e) => {
@@ -89,7 +101,7 @@ const Samples = () => {
                         </Text>
                       </Box>
                     </Flex>
-                  </Box>
+                  </Button>
                 ))}
               </Stack>
             </ScrollArea.Autosize>

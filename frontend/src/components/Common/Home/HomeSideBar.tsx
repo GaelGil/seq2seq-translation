@@ -36,26 +36,24 @@ const HomeSideBar: React.FC<HomeSideBarProps> = ({ collapsed, toggle }) => {
           px={collapsed ? "xs" : "md"}
         >
           {collapsed ? (
-            <Anchor underline="never" component={Link} to="/auth/login">
-              <Box
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-                onClick={(e) => {
-                  e.preventDefault();
-                  toggle();
-                  setHovered(false);
-                }}
-                style={{ cursor: "pointer", position: "relative" }}
-              >
-                {hovered ? (
-                  <ActionIcon variant="subtle" h={32} w={32}>
-                    <FiArrowRight size={18} color="white" />
-                  </ActionIcon>
-                ) : (
-                  <Image src={LOGO} alt={`${PROJECT_NAME} Logo`} h={25} w={25} />
-                )}
-              </Box>
-            </Anchor>
+            <ActionIcon
+              aria-label="Expand Sidebar"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              onClick={() => {
+                toggle();
+                setHovered(false);
+              }}
+              variant="subtle"
+              h={32}
+              w={32}
+            >
+              {hovered ? (
+                <FiArrowRight aria-hidden="true" size={18} color="white" />
+              ) : (
+                <Image src={LOGO} alt="" h={25} w={25} />
+              )}
+            </ActionIcon>
           ) : (
             <>
               <Flex align="center" gap="xs">
@@ -68,8 +66,13 @@ const HomeSideBar: React.FC<HomeSideBarProps> = ({ collapsed, toggle }) => {
                   />
                 </Anchor>
               </Flex>
-              <ActionIcon onClick={toggle} variant="subtle" size="sm">
-                <FiColumns size={18} color="white" />
+              <ActionIcon
+                aria-label="Collapse Sidebar"
+                onClick={toggle}
+                variant="subtle"
+                size="sm"
+              >
+                <FiColumns aria-hidden="true" size={18} color="white" />
               </ActionIcon>
             </>
           )}

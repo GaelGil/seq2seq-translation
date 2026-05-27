@@ -28,10 +28,13 @@ const InputBar: React.FC = () => {
           <Text c="red">Text must be 3 words or more</Text>
         )}
         <Textarea
+          id="translation-source"
+          name="translation-source"
           style={{ flex: 1 }}
           c="white"
           variant="unstyled"
-          placeholder="Enter text to translate..."
+          placeholder="Example: Hola, ¿cómo estás?…"
+          autoComplete="off"
           autosize
           minRows={6}
           maxRows={12}
@@ -59,12 +62,13 @@ const InputBar: React.FC = () => {
           >
             <Tooltip label="Clear">
               <ActionIcon
+                aria-label="Clear Source Text"
                 variant="subtle"
                 color="gray"
                 onClick={() => setSrc("")}
                 size="sm"
               >
-                <FiX size={16} color="red" />
+                <FiX aria-hidden="true" size={16} color="red" />
               </ActionIcon>
             </Tooltip>
           </Box>
