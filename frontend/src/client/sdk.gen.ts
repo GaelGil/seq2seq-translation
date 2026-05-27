@@ -3,7 +3,7 @@
 import type { CancelablePromise } from './core/CancelablePromise';
 import { OpenAPI } from './core/OpenAPI';
 import { request as __request } from './core/request';
-import type { LoginLoginAccessTokenData, LoginLoginAccessTokenResponse, LoginTestTokenResponse, LoginRecoverPasswordData, LoginRecoverPasswordResponse, LoginResetPasswordData, LoginResetPasswordResponse, LoginRecoverPasswordHtmlContentData, LoginRecoverPasswordHtmlContentResponse, PrivateCreateUserData, PrivateCreateUserResponse, TranslationTranslateData, TranslationTranslateResponse, TranslationSetSubmissionStatusData, TranslationSetSubmissionStatusResponse, TranslationGetTranslationsPublicResponse, TranslationGetTranslationsResponse, UsersReadUsersData, UsersReadUsersResponse, UsersCreateUserData, UsersCreateUserResponse, UsersReadUserMeResponse, UsersDeleteUserMeResponse, UsersUpdateUserMeData, UsersUpdateUserMeResponse, UsersUpdatePasswordMeData, UsersUpdatePasswordMeResponse, UsersRegisterUserData, UsersRegisterUserResponse, UsersReadUserByIdData, UsersReadUserByIdResponse, UsersUpdateUserData, UsersUpdateUserResponse, UsersDeleteUserData, UsersDeleteUserResponse, UtilsTestEmailData, UtilsTestEmailResponse, UtilsHealthCheckResponse } from './types.gen';
+import type { LoginLoginAccessTokenData, LoginLoginAccessTokenResponse, LoginTestTokenResponse, LoginRecoverPasswordData, LoginRecoverPasswordResponse, LoginResetPasswordData, LoginResetPasswordResponse, LoginRecoverPasswordHtmlContentData, LoginRecoverPasswordHtmlContentResponse, PrivateCreateUserData, PrivateCreateUserResponse, TranslationTranslateData, TranslationTranslateResponse, TranslationSetSubmissionStatusData, TranslationSetSubmissionStatusResponse, TranslationGetTranslationsPublicResponse, TranslationGetTranslationsAdminResponse, UsersReadUsersData, UsersReadUsersResponse, UsersCreateUserData, UsersCreateUserResponse, UsersReadUserMeResponse, UsersDeleteUserMeResponse, UsersUpdateUserMeData, UsersUpdateUserMeResponse, UsersUpdatePasswordMeData, UsersUpdatePasswordMeResponse, UsersRegisterUserData, UsersRegisterUserResponse, UsersReadUserByIdData, UsersReadUserByIdResponse, UsersUpdateUserData, UsersUpdateUserResponse, UsersDeleteUserData, UsersDeleteUserResponse, UtilsTestEmailData, UtilsTestEmailResponse, UtilsHealthCheckResponse } from './types.gen';
 
 export class LoginService {
     /**
@@ -147,7 +147,7 @@ export class TranslationService {
     
     /**
      * Set Submission Status
-     * Start the translation process
+     * Set the public status of a translation (superuser only)
      * @param data The data for the request.
      * @param data.requestBody
      * @returns boolean Successful Response
@@ -179,15 +179,15 @@ export class TranslationService {
     }
     
     /**
-     * Get Translations
+     * Get Translations Admin
      * Start the translation process
      * @returns TranslationsAdmin Successful Response
      * @throws ApiError
      */
-    public static getTranslations(): CancelablePromise<TranslationGetTranslationsResponse> {
+    public static getTranslationsAdmin(): CancelablePromise<TranslationGetTranslationsAdminResponse> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/api/v1/translation/get_translations'
+            url: '/api/v1/translation/get_translations_admin'
         });
     }
 }

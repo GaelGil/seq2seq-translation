@@ -49,9 +49,6 @@ function HomePage() {
 
   return (
     <TranslationProvider>
-      <Anchor href="#main-content" style={skipLinkStyle} visibleFrom="sm">
-        Skip to Translator
-      </Anchor>
       <AppShell
         layout="alt"
         navbar={{

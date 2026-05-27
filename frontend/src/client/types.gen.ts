@@ -65,7 +65,7 @@ export type TranslationsAdmin = {
 
 export type TranslationSimple = {
     src: string;
-    translation: string;
+    translation: (string | null);
 };
 
 export type TranslationsPublic = {
@@ -176,7 +176,7 @@ export type TranslationSetSubmissionStatusResponse = (boolean);
 
 export type TranslationGetTranslationsPublicResponse = (TranslationsPublic);
 
-export type TranslationGetTranslationsResponse = (TranslationsAdmin);
+export type TranslationGetTranslationsAdminResponse = (TranslationsAdmin);
 
 export type UsersReadUsersData = {
     limit?: number;

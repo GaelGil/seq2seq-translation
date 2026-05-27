@@ -264,7 +264,14 @@ export const TranslationSimpleSchema = {
             title: 'Src'
         },
         translation: {
-            type: 'string',
+            anyOf: [
+                {
+                    type: 'string'
+                },
+                {
+                    type: 'null'
+                }
+            ],
             title: 'Translation'
         }
     },
