@@ -86,8 +86,8 @@ def get_translations_public(
     return result.value
 
 
-@router.post("/get_translations")
-def get_translations(
+@router.post("/get_translations_admin")
+def get_translations_admin(
     translate_service: TranslateServiceDep, current_user: CurrentUser
 ) -> TranslationsAdmin:
     """
