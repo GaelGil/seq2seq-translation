@@ -5,7 +5,6 @@ import {
   ActionIcon,
   Skeleton,
   Box,
-  MantineProvider,
   useMantineColorScheme,
 } from "@mantine/core";
 import { LuMoon, LuSun } from "react-icons/lu";
@@ -18,14 +17,10 @@ export interface ColorModeProviderProps {
 }
 
 export function ColorModeProvider({
-  initialColorScheme = "dark",
+  initialColorScheme: _initialColorScheme = "dark",
   children,
 }: ColorModeProviderProps) {
-  return (
-    <MantineProvider defaultColorScheme={initialColorScheme}>
-      {children}
-    </MantineProvider>
-  );
+  return <>{children}</>;
 }
 
 export function useColorMode() {
@@ -47,7 +42,11 @@ export function useColorModeValue<T>(light: T, dark: T) {
 
 export function ColorModeIcon() {
   const { colorMode } = useColorMode();
-  return colorMode === "dark" ? <LuMoon /> : <LuSun />;
+  return colorMode === "dark" ? (
+    <LuMoon aria-hidden="true" />
+  ) : (
+    <LuSun aria-hidden="true" />
+  );
 }
 
 export const ColorModeButton = React.forwardRef<
@@ -58,6 +57,7 @@ export const ColorModeButton = React.forwardRef<
   return (
     <React.Suspense fallback={<Skeleton width={32} height={32} />}>
       <ActionIcon
+        aria-label="Toggle Color Scheme"
         onClick={toggleColorScheme}
         variant="light"
         size="sm"

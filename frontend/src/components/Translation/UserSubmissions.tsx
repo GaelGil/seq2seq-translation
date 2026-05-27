@@ -34,8 +34,12 @@ const UserSubmisions = () => {
     <Accordion>
       <Accordion.Item value="how-to-prompt">
         <Accordion.Control bg="transparent">
-          <Flex align="center" gap="xs" c="white">
-            <FiHelpCircle aria-hidden="true" size={16} color="white" />
+          <Flex align="center" gap="xs" c="var(--app-text)">
+            <FiHelpCircle
+              aria-hidden="true"
+              size={16}
+              color="var(--app-text)"
+            />
             <Text size="sm" fw={500}>
               User Submissions
             </Text>
@@ -58,8 +62,8 @@ const UserSubmisions = () => {
                       p="sm"
                       style={{
                         borderRadius: 8,
-                        border: "1px solid var(--mantine-color-dark-5)",
-                        backgroundColor: "var(--mantine-color-dark-6)",
+                        border: "1px solid var(--app-border)",
+                        backgroundColor: "var(--app-surface-elevated)",
                       }}
                     >
                       <Box mb="xs">
@@ -73,7 +77,7 @@ const UserSubmisions = () => {
                       <Box
                         pt="xs"
                         style={{
-                          borderTop: "1px dashed var(--mantine-color-dark-4)",
+                          borderTop: "1px dashed var(--app-border)",
                         }}
                       >
                         <Text size="xs" c="teal" mb={4}>

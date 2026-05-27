@@ -54,7 +54,7 @@ const Samples = () => {
     <Accordion>
       <Accordion.Item value="how-to-prompt">
         <Accordion.Control bg="transparent">
-          <Flex align="center" gap="xs" c="white">
+          <Flex align="center" gap="xs" c="var(--app-text)">
             <FiHelpCircle aria-hidden="true" size={16} />
             <Text size="sm" fw={500}>
               Sample Spanish Sentences
@@ -74,8 +74,8 @@ const Samples = () => {
                     variant="subtle"
                     style={{
                       borderRadius: 6,
-                      border: "1px solid var(--mantine-color-dark-5)",
-                      backgroundColor: "var(--mantine-color-dark-6)",
+                      border: "1px solid var(--app-border)",
+                      backgroundColor: "var(--app-surface-elevated)",
                       height: "auto",
                       transition:
                         "border-color 0.2s ease, background-color 0.2s ease",
@@ -83,20 +83,20 @@ const Samples = () => {
                     onClick={() => setSrc(example.text)}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.borderColor =
-                        "var(--mantine-color-teal-7)";
+                        "var(--app-accent)";
                       e.currentTarget.style.backgroundColor =
-                        "var(--mantine-color-dark-5)";
+                        "var(--app-surface)";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.borderColor =
-                        "var(--mantine-color-dark-5)";
+                        "var(--app-border)";
                       e.currentTarget.style.backgroundColor =
-                        "var(--mantine-color-dark-6)";
+                        "var(--app-surface-elevated)";
                     }}
                   >
                     <Flex justify="space-between" align="flex-start">
                       <Box style={{ flex: 1, overflow: "hidden" }}>
-                        <Text size="xs" lineClamp={2} c="gray.3">
+                        <Text size="xs" lineClamp={2} c="var(--app-text-muted)">
                           {example.text}
                         </Text>
                       </Box>

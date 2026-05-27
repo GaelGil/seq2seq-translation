@@ -31,7 +31,7 @@ const InputBar: React.FC = () => {
           id="translation-source"
           name="translation-source"
           style={{ flex: 1 }}
-          c="white"
+          c="var(--app-text)"
           variant="unstyled"
           placeholder="Example: Hola, ¿cómo estás?…"
           autoComplete="off"
@@ -41,7 +41,7 @@ const InputBar: React.FC = () => {
           disabled={isStreaming || isSubmitting}
           value={src}
           onChange={(e) => setSrc(e.target.value)}
-          styles={{ input: { color: "white" } }}
+          styles={{ input: { color: "var(--app-text)" } }}
         />
         <Box
           style={{

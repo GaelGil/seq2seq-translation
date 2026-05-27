@@ -1,9 +1,11 @@
 import {
   AppShell,
+  Anchor,
+  Badge,
   Box,
   Container,
+  Group,
   Paper,
-  Select,
   SimpleGrid,
   Stack,
   Text,
@@ -22,11 +24,19 @@ export const Route = createFileRoute("/")({
 });
 
 const panelStyle = {
-  backgroundColor: "var(--mantine-color-dark-8)",
-  border: "1px solid var(--mantine-color-dark-5)",
+  background:
+    "linear-gradient(180deg, var(--app-surface-elevated), var(--app-surface))",
+  border: "1px solid var(--app-border)",
   height: "100%",
   display: "flex",
   flexDirection: "column" as const,
+};
+
+const skipLinkStyle = {
+  position: "absolute" as const,
+  top: 8,
+  left: 8,
+  zIndex: 1000,
 };
 
 function HomePage() {
@@ -39,6 +49,9 @@ function HomePage() {
 
   return (
     <TranslationProvider>
+      <Anchor href="#main-content" style={skipLinkStyle} visibleFrom="sm">
+        Skip to Translator
+      </Anchor>
       <AppShell
         layout="alt"
         navbar={{
@@ -47,9 +60,9 @@ function HomePage() {
           collapsed: { mobile: true, desktop: false },
         }}
         padding="md"
-        bg="dark.9"
+        bg="var(--app-bg)"
       >
-        <AppShell.Navbar p="md" withBorder={false} bg="dark.9">
+        <AppShell.Navbar p="md" withBorder={false} bg="var(--app-bg)">
           <HomeSideBar collapsed={collapsed} toggle={toggleCollapsed} />
         </AppShell.Navbar>
         <AppShell.Main>
@@ -61,46 +74,85 @@ function HomePage() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              minHeight: "calc(100svh - var(--app-shell-padding))",
+              minHeight: "100svh",
+              paddingTop: "max(2rem, env(safe-area-inset-top))",
               paddingBottom: "max(10vh, env(safe-area-inset-bottom))",
               overflowX: "hidden",
             }}
           >
             <Stack w="100%" maw={1080} gap="lg">
-              <Box ta="center">
+              <Stack gap="xs" ta="center" align="center">
                 <HeaderMessage />
-              </Box>
-              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="md">
-                <Box c="white" style={{ minWidth: 0 }}>
-                  <Paper p="md" radius="lg" style={panelStyle}>
-                    <Text
-                      component="label"
-                      htmlFor="translation-source"
-                      size="sm"
-                      fw={500}
-                      mb="xs"
-                    >
-                      Spanish
-                    </Text>
-                    <InputBar />
-                  </Paper>
-                </Box>
+                <Text
+                  c="var(--app-text-muted)"
+                  size="lg"
+                  maw={620}
+                  style={{ textWrap: "balance" }}
+                >
+                  Paste Spanish text, press Translate, and copy the English
+                  result.
+                </Text>
+              </Stack>
 
-                <Box style={{ minWidth: 0 }}>
-                  <Paper p="md" radius="lg" style={panelStyle}>
-                    <Select
-                      label="Output Language"
-                      placeholder="Choose Output Language…"
-                      data={["English"]}
-                      defaultValue="English"
-                      mb="md"
-                      variant="filled"
-                      styles={{ input: { color: "white" } }}
-                    />
-                    <Translation />
-                  </Paper>
-                </Box>
-              </SimpleGrid>
+              <Paper
+                p={{ base: "md", sm: "lg" }}
+                radius="xl"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(139, 61, 255, 0.16), rgba(16, 16, 24, 0.92))",
+                  border: "1px solid var(--app-border)",
+                }}
+              >
+                <SimpleGrid cols={{ base: 1, md: 2 }} spacing="md">
+                  <Box c="var(--app-text)" style={{ minWidth: 0 }}>
+                    <Paper p="md" radius="lg" style={panelStyle}>
+                      <Stack gap={4} mb="xs">
+                        <Group justify="space-between" gap="xs">
+                          <Text
+                            component="label"
+                            htmlFor="translation-source"
+                            size="sm"
+                            fw={700}
+                          >
+                            Spanish
+                          </Text>
+                          <Badge variant="light">Source</Badge>
+                        </Group>
+                        <Text c="var(--app-text-muted)" size="xs">
+                          Enter Spanish Text
+                        </Text>
+                      </Stack>
+                      <InputBar />
+                    </Paper>
+                  </Box>
+
+                  <Box style={{ minWidth: 0 }}>
+                    <Paper p="md" radius="lg" style={panelStyle}>
+                      <Stack gap={4} mb="xs">
+                        <Group justify="space-between" gap="xs">
+                          <Text c="var(--app-text)" size="sm" fw={700}>
+                            English
+                          </Text>
+                          <Badge variant="light">Translation</Badge>
+                        </Group>
+                        <Text c="var(--app-text-muted)" size="xs">
+                          English Translation
+                        </Text>
+                      </Stack>
+                      <Translation />
+                    </Paper>
+                  </Box>
+                </SimpleGrid>
+              </Paper>
+
+              <Stack gap="xs">
+                <Text c="var(--app-text)" fw={700} size="sm">
+                  Need an Example?
+                </Text>
+                <Text c="var(--app-text-muted)" size="sm">
+                  Try a sample sentence or review recent public submissions.
+                </Text>
+              </Stack>
               <SimpleGrid cols={{ base: 1, md: 2 }} spacing="md">
                 <Box style={{ minWidth: 0 }}>
                   <Samples />

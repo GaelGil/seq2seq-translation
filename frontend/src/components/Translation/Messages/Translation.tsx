@@ -42,7 +42,7 @@ const Translation: React.FC = () => {
         style={{ flex: 1, cursor: "default" }}
         styles={{
           input: {
-            color: hasContent ? "#fff" : "#555",
+            color: hasContent ? "var(--app-text)" : "var(--app-text-subtle)",
           },
         }}
       />

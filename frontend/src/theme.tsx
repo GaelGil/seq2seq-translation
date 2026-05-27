@@ -2,53 +2,57 @@ import type { CSSVariablesResolver } from "@mantine/core";
 import { createTheme } from "@mantine/core";
 export type colorScheme = "light" | "dark";
 
-import { useColorMode } from "./components/ui/color-mode";
 export const theme = createTheme({
   colors: {
-    light: [
-      "#ffffff",
-      "#ffffff",
-      "#ffffff",
-      "#ffffff",
-      "#ffffff",
-      "#ffffff",
-      "#ffffff",
-      "#ffffff",
-      "#ffffff",
-      "#ffffff",
+    night: [
+      "#f8fafc",
+      "#e5e7eb",
+      "#cbd5e1",
+      "#94a3b8",
+      "#64748b",
+      "#334155",
+      "#1e293b",
+      "#171724",
+      "#101018",
+      "#07070a",
     ],
-    purple: [
-      "#fffb00",
-      "#fffb00",
-      "#fffb00",
-      "#fffb00",
-      "#a200ffff", // dark mode links
-      "#fffb00",
-      "#000000ff", // light mode links/buttons
-      "#6e6e6eff", // hover buttons light mode
-      "#a200ffff", // dark mode buttons
-      "#8000caff", //hover buttons dark mode
+    violet: [
+      "#f5f0ff",
+      "#e9dcff",
+      "#d5b9ff",
+      "#bd8cff",
+      "#a566ff",
+      "#8b3dff",
+      "#7327e6",
+      "#5d1dbd",
+      "#481794",
+      "#321066",
     ],
   },
-
-  primaryColor: "purple",
+  primaryColor: "violet",
+  defaultRadius: "md",
+  focusRing: "auto",
 });
 
 export const cssVariablesResolver: CSSVariablesResolver = (theme) => ({
   variables: {
-    "--mantine-color-text-primary":
-      useColorMode().colorMode === "dark" ? theme.white : theme.black,
-    "--mantine-color-text-secondary":
-      useColorMode().colorMode === "dark"
-        ? theme.colors.gray[4]
-        : theme.colors.gray[6],
+    "--app-bg": "#07070a",
+    "--app-surface": "#101018",
+    "--app-surface-elevated": "#171724",
+    "--app-border": "rgba(255, 255, 255, 0.1)",
+    "--app-text": "#f8fafc",
+    "--app-text-muted": "#aeb4c2",
+    "--app-text-subtle": "#747b8f",
+    "--app-accent": theme.colors.violet[5],
+    "--app-accent-hover": theme.colors.violet[4],
+    "--app-focus-ring": "rgba(139, 61, 255, 0.55)",
   },
   light: {
     "--mantine-color-text-primary": theme.black,
     "--mantine-color-text-secondary": theme.colors.gray[6],
   },
   dark: {
-    "--mantine-color-text-primary": theme.white,
-    "--mantine-color-text-secondary": theme.colors.gray[4],
+    "--mantine-color-text-primary": "var(--app-text)",
+    "--mantine-color-text-secondary": "var(--app-text-muted)",
   },
 });

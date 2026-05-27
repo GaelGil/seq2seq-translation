@@ -16,9 +16,9 @@ const RightSection: React.FC = () => {
       bg={isSubmitting ? "gray" : "none"}
     >
       {isSubmitting ? (
-        <FaSquare aria-hidden="true" size={15} color="white" />
+        <FaSquare aria-hidden="true" size={15} color="var(--app-text)" />
       ) : (
-        <FiArrowUp aria-hidden="true" size={15} color="white" />
+        <FiArrowUp aria-hidden="true" size={15} color="var(--app-text)" />
       )}
     </Button>
   )

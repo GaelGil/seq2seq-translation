@@ -18,7 +18,7 @@ const LoadingMessages = () => {
         w="100%"
         display={"flex"}
       >
-        <Loader size="md" color="white" />
+        <Loader size="md" color="var(--app-text)" />
       </Box>
 
       <Box w="100%" bottom={0} pos={"sticky"} p="md">

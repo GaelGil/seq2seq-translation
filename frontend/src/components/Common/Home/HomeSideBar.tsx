@@ -27,7 +27,7 @@ const HomeSideBar: React.FC<HomeSideBarProps> = ({ collapsed, toggle }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <ScrollArea>
+    <ScrollArea h="100svh" style={{ overscrollBehavior: "contain" }}>
       <Stack>
         {/* Controls */}
         <Flex
@@ -49,7 +49,11 @@ const HomeSideBar: React.FC<HomeSideBarProps> = ({ collapsed, toggle }) => {
               w={32}
             >
               {hovered ? (
-                <FiArrowRight aria-hidden="true" size={18} color="white" />
+                <FiArrowRight
+                  aria-hidden="true"
+                  size={18}
+                  color="var(--app-text)"
+                />
               ) : (
                 <Image src={LOGO} alt="" h={25} w={25} />
               )}
@@ -72,14 +76,17 @@ const HomeSideBar: React.FC<HomeSideBarProps> = ({ collapsed, toggle }) => {
                 variant="subtle"
                 size="sm"
               >
-                <FiColumns aria-hidden="true" size={18} color="white" />
+                <FiColumns
+                  aria-hidden="true"
+                  size={18}
+                  color="var(--app-text)"
+                />
               </ActionIcon>
             </>
           )}
         </Flex>
-        {}
         {!collapsed && (
-          <Box p={"md"} c="white">
+          <Box p="md" c="var(--app-text)">
             <Stack>
               <Title order={3}>About</Title>
               <Text>
@@ -104,7 +111,7 @@ const HomeSideBar: React.FC<HomeSideBarProps> = ({ collapsed, toggle }) => {
                 and the frontend is on cloudflare.
               </Text>
               <Anchor
-                c="white"
+                c="var(--app-text)"
                 href={
                   "https://github.com/GaelGil/notebooks/blob/master/transformer/main.py"
                 }
@@ -113,12 +120,12 @@ const HomeSideBar: React.FC<HomeSideBarProps> = ({ collapsed, toggle }) => {
                 className="flex hover:text-primary-600"
               >
                 <Flex align="center" gap="xs">
-                  <FaGithub size={24} />
+                  <FaGithub aria-hidden="true" size={24} />
                   <Text>GitHub</Text>
                 </Flex>
               </Anchor>
               <Anchor
-                c="white"
+                c="var(--app-text)"
                 href={
                   "https://github.com/GaelGil/notebooks/blob/master/transformer/transformers.ipynb"
                 }
@@ -127,7 +134,7 @@ const HomeSideBar: React.FC<HomeSideBarProps> = ({ collapsed, toggle }) => {
                 className="flex hover:text-primary-600"
               >
                 <Flex align="center" gap="xs">
-                  <SiJupyter size={24} />
+                  <SiJupyter aria-hidden="true" size={24} />
                   <Text>Jupyter</Text>
                 </Flex>
               </Anchor>
