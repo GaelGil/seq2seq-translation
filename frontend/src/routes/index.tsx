@@ -1,6 +1,5 @@
 import {
   AppShell,
-  Anchor,
   Badge,
   Box,
   Container,
@@ -30,13 +29,6 @@ const panelStyle = {
   height: "100%",
   display: "flex",
   flexDirection: "column" as const,
-};
-
-const skipLinkStyle = {
-  position: "absolute" as const,
-  top: 8,
-  left: 8,
-  zIndex: 1000,
 };
 
 function HomePage() {

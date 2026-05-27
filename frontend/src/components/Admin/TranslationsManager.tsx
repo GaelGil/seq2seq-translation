@@ -19,7 +19,7 @@ function TranslationsManager() {
   const queryClient = useQueryClient();
 
   const { data, isLoading } = useQuery({
-    queryFn: () => TranslationService.getTranslations(),
+    queryFn: () => TranslationService.getTranslationsAdmin(),
     queryKey: ["translations"],
   });
 
