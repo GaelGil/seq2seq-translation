@@ -32,7 +32,7 @@ const panelStyle = {
 };
 
 function HomePage() {
-  const [collapsed, { toggle: toggleCollapsed }] = useDisclosure(false);
+  const [collapsed, { toggle: toggleCollapsed }] = useDisclosure(true);
 
   const fullWidth = 350;
   const collapsedWidth = 60;
