@@ -1,10 +1,10 @@
 from typing import Any
 
 import jwt
-from app.core.auth.workos import WorkOSAuthResult, WorkOSError, WorkOSService
 from app.database.repositories.user import RepositoryError, UserRepository
 from fastapi import HTTPException
 
+from app.core.auth.workos import WorkOSAuthResult, WorkOSError, WorkOSService
 from app.core.users import UserLifecycleError, UserLifecycleService
 from app.database.models import User
 from app.database.schemas.Result import Result
