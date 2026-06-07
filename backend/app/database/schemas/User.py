@@ -1,4 +1,5 @@
 import uuid
+from enum import Enum
 
 from pydantic import EmailStr
 from sqlmodel import Field, SQLModel
@@ -47,3 +48,9 @@ class UserPublic(UserBase):
 class UsersPublic(SQLModel):
     data: list[UserPublic]
     count: int
+
+
+class AuthProvider(str, Enum):
+    email = "email"
+    google = "google"
+    github = "github"

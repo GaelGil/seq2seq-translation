@@ -90,12 +90,10 @@ WorkOSServiceDep = Annotated[WorkOSService, Depends(get_workos_service_dep)]
 def get_user_lifecycle_service(
     user_repo: UserRepoDep,
     workos_service: WorkOSServiceDep,
-    stripe_service: StripeServiceDep,
 ) -> UserLifecycleService:
     return UserLifecycleService(
         user_repo=user_repo,
         workos_service=workos_service,
-        stripe_service=stripe_service,
     )
 
 

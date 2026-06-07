@@ -90,6 +90,11 @@ class Settings(BaseSettings):
     EMAILS_FROM_EMAIL: EmailStr | None = None
     EMAILS_FROM_NAME: EmailStr | None = None
 
+    #### WORKOS
+    WORKOS_API_KEY: str | None = None
+    WORKOS_CLIENT_ID: str | None = None
+    WORKOS_REDIRECT_URI: str | None = None
+
     @model_validator(mode="after")
     def _set_default_emails_from(self) -> Self:
         if not self.EMAILS_FROM_NAME:
