@@ -8,8 +8,10 @@ from jwt.exceptions import InvalidTokenError
 from pydantic import ValidationError
 from sqlmodel import Session
 
+from app.api.auth.service import AuthService
 from app.api.translation.TranslationService import TranslationService
 from app.core import security
+from app.core.auth.workos import WorkOSService, get_workos_service
 from app.core.config import settings
 from app.database.db import engine
 from app.database.models import User
@@ -76,3 +78,42 @@ def get_current_user_optional(session: SessionDep, token: TokenDep) -> User | No
 
 
 CurrentUserOptional = Annotated[User | None, Depends(get_current_user_optional)]
+
+
+def get_workos_service_dep() -> WorkOSService:
+    return get_workos_service()
+
+
+WorkOSServiceDep = Annotated[WorkOSService, Depends(get_workos_service_dep)]
+
+
+def get_user_lifecycle_service(
+    user_repo: UserRepoDep,
+    workos_service: WorkOSServiceDep,
+    stripe_service: StripeServiceDep,
+) -> UserLifecycleService:
+    return UserLifecycleService(
+        user_repo=user_repo,
+        workos_service=workos_service,
+        stripe_service=stripe_service,
+    )
+
+
+UserLifecycleServiceDep = Annotated[
+    UserLifecycleService, Depends(get_user_lifecycle_service)
+]
+
+
+def get_auth_service(
+    user_repo: UserRepoDep,
+    workos_service: WorkOSServiceDep,
+    user_lifecycle_service: UserLifecycleServiceDep,
+) -> AuthService:
+    return AuthService(
+        user_repo=user_repo,
+        workos_service=workos_service,
+        user_lifecycle_service=user_lifecycle_service,
+    )
+
+
+AuthServiceDep = Annotated[AuthService, Depends(get_auth_service)]

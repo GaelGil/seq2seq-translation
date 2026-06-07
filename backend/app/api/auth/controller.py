@@ -2,10 +2,9 @@
 
 from typing import Any
 
-from app.core.events import UserSignedUp
 from fastapi import APIRouter, Header, HTTPException, Request
 
-from app.api.deps import AuthServiceDep, CurrentUser, EventBusDep
+from app.api.deps import AuthServiceDep, CurrentUser
 from app.core.auth.limiter import limiter
 from app.core.auth.oauth_state import generate_oauth_state, validate_oauth_state
 from app.database.schemas.User import UserPublic, UserRegister
@@ -24,7 +23,6 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 @router.post("/signup", response_model=SignupResponse)
 async def signup(
     auth_service: AuthServiceDep,
-    events: EventBusDep,
     signup_data: UserRegister,
 ) -> Any:
     """Create a new user with email and password.
@@ -32,14 +30,10 @@ async def signup(
     WorkOS will automatically send a verification email.
     User must verify email before they can login.
     """
-    result = auth_service.signup(
-        signup_request=signup_data, signup_code=signup_data.signup_code or " "
-    )
+    result = auth_service.signup(signup_request=signup_data)
 
     if result.error:
         raise result.error
-
-    await events.publish(UserSignedUp(email=signup_data.email, source="password"))
 
     return SignupResponse(
         message="User has signed up succesfully",
